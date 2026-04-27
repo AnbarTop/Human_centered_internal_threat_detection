@@ -1,0 +1,10 @@
+{
+  "recall_ensemble_top_0.5pct": 0.1257,
+  "auc_isolation_forest": 0.629,
+  "auc_autoencoder": 0.551,
+  "insiders_detected_if": 9,
+  "insiders_detected_ae": 22,
+  "insiders_detected_ensemble": 24,
+  "total_insiders_ground_truth": 191,
+  "threshold_contamination": 0.005
+}

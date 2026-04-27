@@ -1,0 +1,34 @@
+# Datos CERT r4.2 (no versionar)
+src/data/raw/*
+!src/data/raw/.gitkeep
+src/data/raw/LDAP/*
+
+src/data/processed/*
+!src/data/processed/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+
+# IDE / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Artefactos de modelos
+models/
+artifacts/
+*.pkl
+*.joblib
+*.h5
+*.pt
+*.pth
