@@ -15,11 +15,11 @@
 ---
 
 - [🛡️ TFM: Detección Conductual de Amenaza Interna (CERT r4.2)](#️-tfm-detección-conductual-de-amenaza-interna-cert-r42)
-  - [📋 Resumen Ejecutivo](#-resumen-ejecutivo)
-  - [🎥 Demostración Interactiva](#-demostración-interactiva)
+  - [📋 Resumen ejecutivo](#-resumen-ejecutivo)
+  - [🎥 Demostración interactiva](#-demostración-interactiva)
   - [🎯 Objetivos del Trabajo](#-objetivos-del-trabajo)
-    - [Objetivo Principal](#objetivo-principal)
-    - [Objetivos Secundarios](#objetivos-secundarios)
+    - [Objetivo principal](#objetivo-principal)
+    - [Objetivos secundarios](#objetivos-secundarios)
   - [❓ Preguntas de Investigación](#-preguntas-de-investigación)
     - [Pregunta General (PIG)](#pregunta-general-pig)
     - [Preguntas Específicas (PIE)](#preguntas-específicas-pie)
@@ -27,12 +27,13 @@
   - [🚀 Quickstart: Ejecución Local](#-quickstart-ejecución-local)
     - [1. Clonar y preparar entorno](#1-clonar-y-preparar-entorno)
     - [2. Preparar el dataset CERT r4.2](#2-preparar-el-dataset-cert-r42)
-    - [3. Ejecutar flujo completo (recomendado)](#3-ejecutar-flujo-completo-recomendado)
+    - [3. Ejecuta flujo completo (recomendado)](#3-ejecuta-flujo-completo-recomendado)
     - [4. Resultados esperados](#4-resultados-esperados)
   - [🔬 Metodología Resumida](#-metodología-resumida)
-    - [Decisiones Metodológicas Clave](#decisiones-metodológicas-clave)
+    - [Decisiones metodológicas clave](#decisiones-metodológicas-clave)
   - [📊 Resultados Detallados](#-resultados-detallados)
-    - [Capacidad Discriminativa Global](#capacidad-discriminativa-global)
+    - [Capacidad discriminativa global](#capacidad-discriminativa-global)
+      - [Curvas ROC comparativas entre modelos (AUC)](#curvas-roc-comparativas-entre-modelos-auc)
     - [Evaluación Táctica (Top-0.5% de alertas)](#evaluación-táctica-top-05-de-alertas)
     - [Explicabilidad SHAP: Caso Confirmado MPM0220](#explicabilidad-shap-caso-confirmado-mpm0220)
   - [⚖️ Consideraciones Éticas y Legales](#️-consideraciones-éticas-y-legales)
@@ -398,7 +399,7 @@ Humanities and Information Technology, 7(4), 29-40.
 
 - Hazarika, D., Konwar, G., Deb, S., & Bora, D. J. (2020). Sentiment Analysis on Twitter by Using TextBlob for Natural Language Processing. ICRMAT, 24, 63-67.
 
--Hutto, C., & Gilbert, E. (2014). Vader: A parsimonious rule-based model for sentiment analysis of social media text. 8(1), 216-225.
+- Hutto, C., & Gilbert, E. (2014). Vader: A parsimonious rule-based model for sentiment analysis of social media text. 8(1), 216-225.
 
 - Idensohn, C. J., & Flowerday, S. (2024). Malicious Insider Behaviour in Cybersecurity Informed by The Fraud Triangle. Journal of Information Systems Security (ISSN 1551-123), 22.
 
