@@ -1,162 +1,110 @@
-# TFM Insider Threat Detection (CERT r4.2)
+# 🛡️ TFM: Detección Conductual de Amenaza Interna (CERT r4.2)
 
-Proyecto de Trabajo Fin de Master (UOC, Ciencia de Datos) orientado a la deteccion temprana de riesgo interno (insider threat) con un enfoque hibrido:
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19435851.svg)](https://doi.org/10.5281/zenodo.19435851)
+[![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Space-blue)](https://huggingface.co/spaces/Kamaranis/Internal-Threat-Detection-Ensemble-CPIR)
 
-- senales tecnicas de actividad digital,
-- senales conductuales y emocionales en texto,
-- contexto psicometrico y organizacional.
+> **Trabajo Final de Máster en Ciencia de Datos**  
+> **Universitat Oberta de Catalunya (UOC)**  
+> **Autor:** Antonio Barrera Mora  
+> **Director:** Blas Torregrosa García | **Directora PRA:** Esther Ibáñez  
+> **Fecha de entrega:** 7 de abril de 2026  
+> **Área:** NLP, Ciberseguridad y Visual Analytics (A2. NPL&VA)
 
-El objetivo es academico: validar una metodologia reproducible y explicable para anticipar cambios de comportamiento de riesgo en entornos corporativos.
+---
 
-## Video de presentacion (YouTube)
+## 📋 Resumen Ejecutivo
 
-- Enlace del video: PENDIENTE_DE_PUBLICACION
+Este proyecto desarrolla un sistema híbrido de detección temprana de **amenaza interna** (*Insider Threat*) que integra:
 
-## 1. Objetivos del trabajo
+| Dimensión | Fuentes | Variables Clave |
+|-----------|---------|----------------|
+| **Técnica** | `logon`, `http`, `usb`, `file` | Volumetría, horarios, actividad fuera de jornada |
+| **Conductual** | `email` (NLP) | Deriva afectiva (`sentiment_z_user`), ventanas móviles |
+| **Contextual** | `psychometric`, `ldap` | Big Five (OCEAN), rol, departamento (snapshot) |
 
-### 1.1 Objetivo principal
+**Resultados clave** (validación sobre CERT r4.2, 330k registros, 191 insiders confirmados):
 
-Desarrollar un modelo analitico de deteccion de anomalias para identificar amenazas internas corporativas, integrando variables tecnicas de sistemas de informacion con indicadores conductuales extraidos mediante analisis de sentimiento en comunicaciones organizacionales.
+| Modelo | AUC | Recall @ Top-0.5% | Insiders detectados |
+|--------|-----|-------------------|---------------------|
+| Isolation Forest (baseline) | **0.629** | 4.71% | 9 / 191 |
+| Autoencoder (Deep Learning) | 0.551 | **11.52%** | 22 / 191 |
+| **Ensemble (votación lógica)** | — | **12.57%** | **24 / 191** ✅ |
 
-### 1.2 Objetivos secundarios
+> 🔍 **Hallazgo principal**: La integración de señales técnicas y conductuales permite anticipar la amenaza interna investigando únicamente el **0.5% de la actividad corporativa diaria**, reduciendo drásticamente la fatiga de alertas operativa.
 
-1. Preprocesar y estructurar datos heterogeneos y multivariantes de CERT r4.2 (logon, device, http, email y file) para construir una matriz de perfiles de actividad por usuario.
-2. Aplicar tecnicas NLP para generar caracteristicas psicologicas cuantificables a partir del contenido de email.
-3. Entrenar y comparar algoritmos no supervisados de deteccion de anomalias en contexto de desbalanceo extremo.
-4. Evaluar el rendimiento del sistema mediante metricas y analisis forense de casos de estudio contrastados con la ground truth del dataset.
+---
 
-## 2. Preguntas de investigacion
+## 🎥 Demostración Interactiva
 
-### 2.1 Pregunta de investigacion general (PIG)
+🔗 **[Internal Threat Detection Ensemble - CPIR (Hugging Face Space)](https://huggingface.co/spaces/Kamaranis/Internal-Threat-Detection-Ensemble-CPIR)**
 
-Es posible anticipar y detectar incidentes de amenaza interna en un entorno corporativo mediante modelos de aprendizaje no supervisado sobre una matriz conductual que integre volumetria tecnica y deriva psicologica?
+Prueba el sistema en tiempo real:
+- Altera variables conductuales (actividad, sentimiento, horarios)
+- Observa el recálculo del Índice de Riesgo (0-100)
+- Visualiza la explicación SHAP (Waterfall Plot) para auditoría forense
 
-### 2.2 Preguntas de investigacion especificas (PIE)
+---
 
-1. En que medida la cuantificacion de deriva conductual (por ejemplo `sentiment_z_user` y ventanas moviles por usuario) mejora la capacidad predictiva frente a un enfoque puramente volumetrico?
-2. Que nivel de eficacia operativa (AUC y recall a nivel usuario) pueden alcanzar modelos no supervisados ante desbalanceo extremo, sin recurrir a sobremuestreo sintetico?
-3. Como contribuye la combinacion de paradigmas (Isolation Forest y Autoencoder en estrategia de fuego cruzado) a incrementar la captura de insiders sin aumentar de forma descontrolada la fatiga de alertas?
-4. Es posible traducir las decisiones de los modelos a evidencia operativa trazable mediante XAI (SHAP), de forma coherente con el marco CPIR?
+## 🎯 Objetivos del Trabajo
 
-## 3. Alineacion con los notebooks del proyecto
+### Objetivo Principal
+Desarrollar un modelo analítico de detección de anomalías que integre variables técnicas de TI con indicadores conductuales extraídos mediante NLP, para anticipar cambios de comportamiento de riesgo en entornos corporativos.
 
-1. `01_Exploracion.ipynb`: validacion de cobertura de fuentes, temporalidad y consistencia de datos base.
-2. `02_Ingesta_Procesamiento.ipynb`: arquitectura por capas, transformaciones por fuente, reglas de integracion y control de calidad.
-3. `03_Ingenieria_Caracteristicas.ipynb`: construccion de variables de sentimiento, z-scores conductuales, variables temporales y shortlist para modelado.
-4. `04_Modelo_Deteccion.ipynb`: modelado no supervisado (Isolation Forest y Autoencoder), evaluacion (AUC/Recall), estrategia ensemble y explicabilidad con SHAP.
+### Objetivos Secundarios
+1. ✅ Estructurar datos heterogéneos de CERT r4.2 en una matriz de perfiles usuario-día.
+2. ✅ Aplicar NLP (VADER) para extraer métricas de sentimiento y deriva afectiva.
+3. ✅ Entrenar y comparar algoritmos no supervisados (Isolation Forest, Autoencoder) en contexto de desbalanceo extremo (1:1730).
+4. ✅ Implementar capa XAI (SHAP) para traducir decisiones matemáticas en evidencia criminológica trazable.
 
-## 4. Dataset
+---
 
-Se utiliza CERT Insider Threat Dataset r4.2 (CMU/SEI), simulacion de 1000 empleados durante 17 meses.
+## ❓ Preguntas de Investigación
 
-Politica de datos de este repositorio:
+### Pregunta General (PIG)
+> ¿Es posible anticipar incidentes de amenaza interna mediante modelos no supervisados sobre una matriz conductual híbrida (técnica + psicológica)?
 
-- No se versionan datos raw ni procesados en GitHub.
-- Debes descargar y preparar el dataset localmente.
-- Instrucciones en references/CERT_DOWNLOAD.md.
+**Respuesta empírica**: ✅ **Sí**. El sistema detectó 24 atacantes reales (Recall 12.57%) investigando solo el 0.5% de la actividad.
 
-## 5. Metodologia resumida
+### Preguntas Específicas (PIE)
 
-1. Ingesta y limpieza (normalizacion temporal, IDs, calidad de registros).
-2. Ingenieria de caracteristicas por usuario y ventana temporal.
-3. Extraccion NLP de senales emocionales en email.
-4. Fusion de senales tecnicas y psico-conductuales.
-5. Deteccion de anomalias con modelos no supervisados y comparativa entre paradigmas.
-6. Evaluacion cuantitativa y analisis cualitativo de casos.
+| PIE | Pregunta | Respuesta Empírica |
+|-----|----------|-------------------|
+| **PIE 1** | ¿Mejora la deriva afectiva (`sentiment_z_user`) la capacidad predictiva? | ✅ **Sí, como confirmador**. El sentimiento no es predictor primario, pero contextualiza la anomalía técnica (SHAP ≈ −0.42). |
+| **PIE 2** | ¿Qué Recall alcanzan modelos no supervisados sin sobremuestreo? | ✅ **12.57% @ Top-0.5%**. Métrica operativamente relevante frente al AUC global en desbalanceo extremo. |
+| **PIE 3** | ¿Contribuye el Ensemble a maximizar la detección? | ✅ **Sí**. Complementariedad táctica: IF detecta anomalías volumétricas; AE captura desviaciones sutiles multidimensionales. |
+| **PIE 4** | ¿Valida XAI las premisas del modelo CPIR? | ✅ **Sí**. SHAP mapea variables técnicas con fases CPIR ("preparación activa", "explotación") y confirma que los rasgos Big Five tienen contribución marginal (garantía ética). |
 
-## 6. Estructura del repositorio
+---
+
+## 🗂️ Estructura del Repositorio
 
 ```text
 .
-├── README.md
-├── requirements.txt
+├── README.md                          # Este archivo
+├── requirements.txt                   # Dependencias Python
 ├── notebooks/
-│   ├── 01_Exploracion.ipynb
-│   ├── 02_Ingesta_Procesamiento.ipynb
-│   ├── 03_Ingenieria_Caracteristicas.ipynb
-│   └── 04_Modelo_Deteccion.ipynb
+│   ├── 01_Exploracion.ipynb          # EDA inicial y validación de fuentes
+│   ├── 02_Ingesta_Procesamiento.ipynb# Arquitectura ETL y matriz maestra
+│   ├── 03_Ingenieria_Caracteristicas.ipynb # Feature engineering + shortlist
+│   └── 04_Modelo_Deteccion.ipynb     # Modelado, evaluación y XAI
+├── src/
+│   ├── 01_ingesta_test_device.py     # Prueba de concepto CSV→Parquet
+│   ├── 02_ingesta_http.py            # Procesamiento HTTP por chunks
+│   ├── 03_ingesta_logon.py           # Agregación diaria de logon + after-hours
+│   ├── 04_ingesta_email_nlp.py       # NLP VADER + agregación sentimiento
+│   ├── 05_ingesta_file_psycho.py     # File + Psychometric processing
+│   ├── 06_master_join.py             # Integración final: matriz maestra
+│   └── check_setup.py                # Verificación de entorno
 ├── references/
-│   ├── dataset_structure.md
-│   └── CERT_DOWNLOAD.md
-└── src/
-    ├── 01_ingesta_test_device.py
-    ├── 02_ingesta_http.py
-    ├── 03_ingesta_logon.py
-    ├── 04_ingesta_email_nlp.py
-    ├── 05_ingesta_file_psycho.py
-    ├── 06_master_join.py
-    ├── check_setup.py
-    └── data/
-        ├── raw/
-        └── processed/
+│   ├── CERT_DOWNLOAD.md              # Instrucciones para obtener el dataset
+│   └── dataset_structure.md          # Descripción estructural de CERT r4.2
+├── models/                           # Modelos serializados (no versionados en Git)
+│   ├── isolation_forest_v1.pkl
+│   ├── autoencoder_v1.keras
+│   └── scaler_v1.pkl
+└── .gitignore                        # Excluye datos raw/processed y modelos
 ```
 
-## 7. Requisitos tecnicos
-
-- Python 3.10+
-- Entorno recomendado: conda o venv
-- Dependencias en requirements.txt
-
-## 8. Quickstart
-
-```bash
-git clone <URL_DEL_REPOSITORIO>
-cd "TFM_Insider_Threat (trabajando)"
-
-python -m venv .venv
-source .venv/bin/activate
-
-pip install -r requirements.txt
-python src/check_setup.py
-```
-
-## 9. Flujo recomendado de ejecucion
-
-1. Preparar datos locales siguiendo references/CERT_DOWNLOAD.md.
-2. Ejecutar notebooks/01_Exploracion.ipynb.
-3. Revisar notebooks/02_Ingesta_Procesamiento.ipynb como guia metodologica.
-4. Ejecutar notebooks/03_Ingenieria_Caracteristicas.ipynb.
-5. Ejecutar notebooks/04_Modelo_Deteccion.ipynb.
-6. Consolidar logica estable en scripts de src/.
-
-## 10. Reproducibilidad
-
-- Este repositorio versiona codigo, notebooks y documentacion.
-- Los directorios src/data/raw y src/data/processed estan excluidos por .gitignore.
-- Los resultados dependen de la version del dataset y del estado del entorno Python.
-
-## 11. Estado actual
-
-- Pipeline base de ingesta y fusion disponible en src/.
-- Cuatro notebooks de trabajo preparados para el flujo completo.
-- Artefactos generados para modelado: `master_behavioral_matrix.parquet`, `feature_matrix_v1.parquet` y `feature_shortlist_m34.csv` (en entorno local, no versionados).
-- Documentacion de referencia en references/.
-
-## 12. Consideraciones eticas y de uso
-
-Este trabajo tiene finalidad academica y de investigacion.
-
-- Los resultados son indicadores de riesgo, no evidencia concluyente individual.
-- Cualquier uso aplicado requiere supervision humana y gobernanza.
-- Para datos reales, se requiere base legal, minimizacion de datos y controles de auditoria.
-
-## 13. Referencias del proyecto
-
-- `references/CERT_DOWNLOAD.md`: preparacion local de dataset y estructura esperada.
-- `references/dataset_structure.md`: descripcion estructural de las fuentes CERT.
-- `src/01_ingesta_test_device.py` a `src/06_master_join.py`: pipeline de ingesta, transformacion e integracion.
-- `src/check_setup.py`: verificacion de entorno.
-
-## 14. Bibliografia
-
-1. CERT Division, Carnegie Mellon University. Insider Threat Test Dataset r4.2.
-2. Liu, F. T., Ting, K. M., Zhou, Z.-H. Isolation Forest. ICDM, 2008.
-3. Le, D. C., Zincir-Heywood, A. N. Anomaly Detection for Insider Threats Using Unsupervised Ensembles. IEEE TNSM, 2021.
-4. Lundberg, S. M., Lee, S.-I. A Unified Approach to Interpreting Model Predictions (SHAP). NeurIPS, 2017.
-5. Chandola, V., Banerjee, A., Kumar, V. Anomaly Detection: A Survey. ACM Computing Surveys, 2009.
-
-## 15. Siguientes pasos
-
-1. Publicar el video en YouTube y actualizar el enlace en este README.
-2. Estandarizar limpieza de outputs de notebooks antes de cada commit.
-3. Definir metrica final de comparacion baseline (solo logs) vs enfoque hibrido.
+⚠️ Nota sobre datos: Los directorios `src/data/raw/` y `src/data/processed/` están excluidos por .gitignore. Debes preparar el dataset localmente siguiendo references/CERT_DOWNLOAD.md.
