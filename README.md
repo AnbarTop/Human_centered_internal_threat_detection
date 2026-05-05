@@ -9,7 +9,7 @@
 > **Universitat Oberta de Catalunya (UOC)**  
 > **Autor:** Antonio Barrera Mora  
 > **Director:** Blas Torregrosa García | **Directora PRA:** Esther Ibáñez  
-> **Fecha de entrega:** 28 de abril de 2026 (M3)
+> **Fecha de entrega:** 28 de abril de 2026
 > **Área:** NLP, Ciberseguridad y Visual Analytics (A2. NPL&VA)
 
 ---
