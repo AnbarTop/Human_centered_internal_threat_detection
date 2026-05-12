@@ -371,6 +371,8 @@ Bell, A. J., Rogers, M. B., & Pearce, J. M. (2019). The insider threat: Behavior
 
 - Big Five Factors of Personality Traits, Age, and Employees’ Risky Mobile Device Behavior—ProQuest. (s. f.). Recuperado 24 de febrero de 2026, de https://www.proquest.com/openview/2be8346162e1b64db6470c2cb3f79370/1?pq-origsite=gscholar&cbl=18750
 
+-BobSulli. (2023). Cost Of Insider Risks Global Report—2023 | Ponemon-Sullivan Privacy Report. https://ponemonsullivanreport.com/2023/10/cost-of-insider-risks-global-report-2023/ 
+
 - Bronfenbrenner, U. (1977). Toward an experimental ecology of human development. American psychologist, 32(7), 513.
 Bruns, M. (2020). Preventing Insider Threat at the Source. Utica College.
 
