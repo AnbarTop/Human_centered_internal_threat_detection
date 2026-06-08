@@ -262,7 +262,7 @@ graph LR
 
 ### Explicabilidad SHAP: Caso Confirmado MPM0220
 
-![Waterfall SHAP](https://via.placeholder.com/600x400?text=SHAP+Waterfall:+MPM0220)
+![Waterfall SHAP](shap.png)
 
 | Variable | Valor SHAP | Interpretación Criminológica |
 |----------|------------|------------------------------|
